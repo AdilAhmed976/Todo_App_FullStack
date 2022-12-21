@@ -20,7 +20,7 @@ export const AllTodo = () => {
     
 const getTodo = (page) => {
 
-    let url = `http://localhost:8080/todo?page=${page}&limit=6`
+    let url = `https://todobackend-asac.onrender.com/todo?page=${page}&limit=6`
     const config = {
         headers:{
             "Authorization": `Bearer ${tokenof}`

@@ -44,7 +44,7 @@ export const Homepage = () => {
   
 const getTodo = () => {
 
-  let url = `http://localhost:8080/todo`
+  let url = `https://todobackend-asac.onrender.com/todo`
   const config = {
       headers:{
           "Authorization": `Bearer ${tokenof}`
@@ -78,7 +78,7 @@ const addtodo = () => {
         Todo: todo,
         Status:status
       }
-      let url = `http://localhost:8080/todo/create`
+      let url = `https://todobackend-asac.onrender.com/todo/create`
       const config = {
           headers:{
               "Authorization": `Bearer ${tokenof}`

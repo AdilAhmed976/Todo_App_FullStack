@@ -45,7 +45,7 @@ const addtodo = () => {
         Todo: todo,
         Status:status
       }
-      let url = `http://localhost:8080/todo/edit/${id}`
+      let url = `https://todobackend-asac.onrender.com/todo/edit/${id}`
       const config = {
           headers:{
               "Authorization": `Bearer ${tokenof}`

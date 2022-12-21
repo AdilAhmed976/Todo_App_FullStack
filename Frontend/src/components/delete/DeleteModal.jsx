@@ -40,7 +40,7 @@ const addtodo = () => {
     
 
       
-      let url = `http://localhost:8080/todo/delete/${id}`
+      let url = `https://todobackend-asac.onrender.com/todo/delete/${id}`
       const config = {
           headers:{
               "Authorization": `Bearer ${tokenof}`

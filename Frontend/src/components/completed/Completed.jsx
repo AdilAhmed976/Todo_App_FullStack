@@ -15,7 +15,7 @@ export const Completed = () => {
     
 const getTodo = (page) => {
 
-    let url = `http://localhost:8080/todo`
+    let url = `https://todobackend-asac.onrender.com/todo`
     const config = {
         headers:{
             "Authorization": `Bearer ${tokenof}`
