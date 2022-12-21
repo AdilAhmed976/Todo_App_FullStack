@@ -43,15 +43,14 @@ website link :- https://todo-frontend-tau.vercel.app/
   ---
 <img src="https://i.imgur.com/abtiN2s.jpg" alt="Logo" marginTop='10px' width="1000" >
 
-
   **4) Edit Modal**
   ---
 <img src="https://i.imgur.com/zUT1RNk.jpg" alt="Logo" marginTop='10px' width="1000" >
 
   **5) Delete Modal**
   ---
-<img src=https://i.imgur.com/ZOY1ZfM.jpg" alt="Logo" marginTop='10px' width="1000" >
-  
+<img src="https://i.imgur.com/ZOY1ZfM.jpg" alt="Logo" marginTop='10px' width="1000" >
+
  
  
 
