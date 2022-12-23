@@ -112,16 +112,11 @@ const addtodo = () => {
         isClosable: true,
       })
     }
-// return
+
 }
   
   return (
-    <Box 
-      // // display={"flex"} 
-      // justifyContent={"center"} 
-      // alignItems={"center"} 
-      // height={'80vh'} 
-    >
+    <Box >
       <Box 
         display={"flex"} 
         justifyContent={"center"} 
@@ -187,7 +182,7 @@ const addtodo = () => {
           <Box> {`Todo : ${e.Todo}`}</Box>
           <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
       </Box>
-      <Box border={"1px solid red"} display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
+      <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
         <EditModal id={e._id} getTodo={getTodo} />
         <DeleteModal id={e._id} getTodo={getTodo} />
       </Box>

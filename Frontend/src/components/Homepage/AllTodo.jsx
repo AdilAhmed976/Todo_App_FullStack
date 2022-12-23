@@ -47,7 +47,6 @@ useEffect(() => {
   return (
     <Box>
         <Box  
-            border={'1px solid red'} 
             display={"grid"}  
             gap={"40px"} padding={'20px'}  
             gridTemplateColumns={{ base: "repeat(1,1fr)", sm: "repeat(1,1fr)", md: "repeat(2,1fr)", lg: "repeat(2,1fr)", xl: "repeat(3,1fr)",'2xl': 'repeat(3,1fr)'}}
@@ -64,7 +63,7 @@ useEffect(() => {
                                 <Box> {`Todo : ${e.Todo}`}</Box>
                                 <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
                             </Box>
-                            <Box border={"1px solid red"} display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
+                            <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
                             {/* <Link to={`edit/${e._id}`} >
                                 <Button leftIcon={<FaRegEdit/>} >
                                         Edit 
