@@ -25,10 +25,16 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getLocalData, SaveTheToken } from '../utils/localStorage';
 import { FaRegIdBadge } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutTheUser } from '../Redux/AuthReducer/action';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const token = getLocalData("token")
+  const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+  const isLoading = useSelector((store) => store.AuthReducer.isLoading);
+
+  const dispatch = useDispatch()
   // const [logincheck,setLoginCheck] = ()
   const [updateNavbar, setUpdateNavbar] = useState(false)
   const navigate =useNavigate()
@@ -92,8 +98,8 @@ export default function Navbar() {
 
         </Flex>
         {token ? <Button onClick={()=> {
-          SaveTheToken("token","")
-navigate("/")
+          dispatch(logOutTheUser())
+          navigate("/login")
       }} rightIcon={<FaRegIdBadge/>} border colorScheme='white' variant='filled'>
             Logout
           </Button> : <Stack

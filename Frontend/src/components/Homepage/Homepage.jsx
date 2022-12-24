@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, FormControl, FormLabel, HStack, Input, Radio, RadioGroup, useToast } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, CircularProgress, FormControl, FormLabel, HStack, Input, Radio, RadioGroup, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
@@ -9,6 +9,8 @@ import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from 'react-router-dom'
 import { EditModal } from '../editpage/EditModal'
 import { DeleteModal } from '../delete/DeleteModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { GettingTheTodosData } from '../../Redux/AppReducer/action'
 
 
 export const Homepage = () => {
@@ -37,29 +39,32 @@ export const Homepage = () => {
   const [status,setStatus] = useState("false")
   const [tokenof,setTokenof] = useState(getLocalData("token"))
   const toast = useToast()
-  const [data,setData] = useState([])
+  const dispatch = useDispatch()
+  const data = useSelector((store) => store.AppReducer.todoData)
+  const isLoading = useSelector((store) => store.AppReducer.isLoading)
 
 
   const navigate = useNavigate();
   
 const getTodo = () => {
 
-  let url = `https://todobackend-asac.onrender.com/todo`
-  const config = {
-      headers:{
-          "Authorization": `Bearer ${tokenof}`
-      }
-  };
+dispatch(GettingTheTodosData(tokenof))
+  // let url = `https://todobackend-asac.onrender.com/todo`
+  // const config = {
+  //     headers:{
+  //         "Authorization": `Bearer ${tokenof}`
+  //     }
+  // };
 
-      axios.get(url , config)
-  .then((response) => {
-    console.log(response.data)
-      setData(response.data)
-      // console.log(response.headers.content-length)
-  })  
-  .catch(function (error) {
-      // console.log(error);
-  })
+  //     axios.get(url , config)
+  // .then((response) => {
+
+  //     setData(response.data)
+
+  // })  
+  // .catch(function (error) {
+
+  // })
 }
       
 useEffect(() => {
@@ -67,7 +72,7 @@ useEffect(() => {
   getTodo()
   
 }, [])
-  console.log("HOOKS",data)
+
 
 const addtodo = () => {
 
@@ -166,29 +171,38 @@ const addtodo = () => {
       </Box>
 
       {/* <Box> */}
-        <Carousel responsive={responsive} 
-  showDots={true} swipeable={true} arrows={true}
-
-  >
-    {!!data && data?.map((e) => {
-      return <Box key={e._id} 
-      border={'0.5px solid lightgray'} 
-      px={"40px"} py={"40px"} fontFamily="Roboto Mono" 
-      boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} 
-      borderRadius={"20px"} bg={"rgb(244,248,254)"} 
-  >
-      <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
-          <Box> {`Heading : ${e.Heading}`}</Box>
-          <Box> {`Todo : ${e.Todo}`}</Box>
-          <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
-      </Box>
-      <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
-        <EditModal id={e._id} getTodo={getTodo} />
-        <DeleteModal id={e._id} getTodo={getTodo} />
-      </Box>
-  </Box>
-    })}
-        </Carousel>;
-      </Box>
-  )
+      { isLoading ? <Box 
+                      display={"flex"} 
+                      justifyContent="center" 
+                      alignItems={"center"}
+                      alignSelf="center"
+                      minHeight={"200px"} 
+                    > 
+                      <CircularProgress isIndeterminate color='rgb(253,216,53)' /> 
+                    </Box> 
+                  :
+                <Carousel 
+                  responsive={responsive} 
+                  showDots={true} swipeable={true} arrows={true}
+                >
+                  {!!data && data?.map((e) => {
+                    return <Box key={e._id} 
+                    border={'0.5px solid lightgray'} 
+                    px={"40px"} py={"40px"} fontFamily="Roboto Mono" 
+                    boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} 
+                    borderRadius={"20px"} bg={"rgb(244,248,254)"} 
+                  >
+                      <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
+                          <Box> {`Heading : ${e.Heading}`}</Box>
+                          <Box> {`Todo : ${e.Todo}`}</Box>
+                          <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
+                      </Box>
+                      <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
+                        <EditModal id={e._id} getTodo={getTodo} />
+                        <DeleteModal id={e._id} getTodo={getTodo} />
+                      </Box>
+                  </Box>
+                  })}
+                  </Carousel>}
+                  </Box>)
 }

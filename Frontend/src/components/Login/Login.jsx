@@ -38,8 +38,7 @@ export default function Login() {
 
     dispatch(loginCheck(payload))
       .then(function (response) {
-        console.log(response)
-        
+
         if (response.payload != undefined && response.type == "LOGIN_SUCCESS") {
           toast({
             position: "top",

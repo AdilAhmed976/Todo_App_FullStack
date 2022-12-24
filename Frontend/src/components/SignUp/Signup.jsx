@@ -17,6 +17,8 @@ import {
 import axios from 'axios';
 import { useState } from 'react';
 import {Link} from "react-router-dom";
+import { signupCheck } from '../../Redux/AuthReducer/action';
+import { useDispatch, useSelector } from 'react-redux';
   export default function Signup() {
 
     const [email, setEmail] = useState("")
@@ -24,44 +26,39 @@ import {Link} from "react-router-dom";
     const isError = email === ''
     const toast = useToast()
     const [user,setUser] = useState(false)
+    const dispatch = useDispatch()
+    const isLoading = useSelector((store) => store.AuthReducer.isLoading);
 
 
     const handleSignUp = () => {
-        console.log(email,password)
-            axios({
-            method: 'post',
-            url: 'https://todobackend-asac.onrender.com/user/signup',
-            data: {
-                email: email,
-                password: password
-            }
-          })
-          .then(function (response) {
-            if(response.data.msg=="User Already Exists") {
-              toast({
-                position: 'top',
-                marginTop: '150px',
-                description: response.data.msg,
-                status: 'error',
-                duration: 3000,
-                isClosable: true,
-            })
-            }
-            else if(response.data.msg == "Signup Successfull") {
-              toast({
-                position: 'top',
-                marginTop: '150px',
-                description: response.data.msg,
-                status: 'success',
-                duration: 3000,
-                isClosable: true,
-            })
-            }
-          })  
-          .catch(function (error) {
-            console.log("SSSSSS",error);
+      const payload = { email, password };
 
-          })
+      dispatch(signupCheck(payload))
+        .then(function (response) {
+
+          if (response.type == "SIGNUP_SUCCESS") {
+            toast({
+              position: "top",
+              marginTop: "150px",
+              description: response.type,
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+            });
+          } else {
+            toast({
+              position: "top",
+              marginTop: "150px",
+              description: "Invalid Details",
+              status: "error",
+              duration: 3000,
+              isClosable: true,
+            });
+          }
+        })
+        .catch(function (error) {
+          console.log("ERROR", error);
+        });
     }
 
     return (
@@ -93,6 +90,7 @@ import {Link} from "react-router-dom";
             <Stack spacing={10}>
               
               <Button
+                isLoading={isLoading ? isLoading : false}
                 onClick={handleSignUp}
                 bg={'blue.400'}
                 color={'white'}

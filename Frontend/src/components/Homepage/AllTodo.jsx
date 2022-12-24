@@ -7,14 +7,21 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { EditModal } from '../editpage/EditModal';
 import { DeleteModal } from '../delete/DeleteModal';
+import { useSelector } from 'react-redux';
 
 
 export const AllTodo = () => {
 
-    const toast = useToast()
-    const [tokenof,setTokenof] = useState(getLocalData("token"))
-    const [data,setData] = useState([])
-    const [noOfpage,setPage] = useState("")
+    const toast = useToast();
+    const [tokenof,setTokenof] = useState(getLocalData("token"));
+    const [data,setData] = useState([]);
+
+    const [page,setPage] = useState(1);
+    const perPage = 6;
+    const totalPages = Math.ceil(useSelector((store) => store.AppReducer.todoData.length) / 8)
+
+    const  noOfButtons = new Array(totalPages).fill(0)
+console.log(noOfButtons,totalPages)
 
     const navigate = useNavigate();
     
@@ -30,7 +37,6 @@ const getTodo = (page) => {
         axios.get(url , config)
     .then((response) => {
         setData(response.data)
-        // console.log(response.headers.content-length)
     })  
     .catch(function (error) {
         // console.log(error);
@@ -64,11 +70,6 @@ useEffect(() => {
                                 <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
                             </Box>
                             <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
-                            {/* <Link to={`edit/${e._id}`} >
-                                <Button leftIcon={<FaRegEdit/>} >
-                                        Edit 
-                                </Button>
-                            </Link> */}
                             <EditModal id={e._id} getTodo={getTodo} />
                             
                             <DeleteModal id={e._id} getTodo={getTodo} />
@@ -77,11 +78,10 @@ useEffect(() => {
             })}
         </Box>
         <Box>
-            <Box>
-                <Button value={1} onClick={(e)=>{getTodo(e.target.value)}} >1</Button>
-                <Button value={2} onClick={(e)=>{getTodo(e.target.value)}} >2</Button>
-                <Button value={3} onClick={(e)=>{getTodo(e.target.value)}} >3</Button>
-                <Button value={4} onClick={(e)=>{getTodo(e.target.value)}} >4</Button>
+            <Box> { noOfButtons?.map((e,i) => {
+                 return <Button value={i+1} onClick={(e)=>{getTodo(e.target.value)}}>{i+1}</Button>
+            })
+                }
             </Box> 
         </Box>
     </Box>

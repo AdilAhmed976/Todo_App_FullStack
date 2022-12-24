@@ -17,3 +17,21 @@ export const getDataFailure = () => {
 	};
 };
 
+export const GettingTheTodosData = (payload) => (dispatch)=> {
+
+	dispatch(getDataRequest())
+	let url = `https://todobackend-asac.onrender.com/todo`
+	const config = {
+		headers:{
+			"Authorization": `Bearer ${payload}`
+		}
+	};
+	axios.get(url , config)
+	.then((response) => {
+		dispatch(getDataSuccess(response.data))
+	})  
+	.catch(function (error) {
+		dispatch(getDataFailure())
+	})
+}
+
