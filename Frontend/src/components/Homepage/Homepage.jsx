@@ -34,42 +34,27 @@ export const Homepage = () => {
       items: 1
     }
   };
-  const [todo,SetTodo] = useState("")
-  const [heading,setHeading] = useState("")
-  const [status,setStatus] = useState("false")
-  const [tokenof,setTokenof] = useState(getLocalData("token"))
-  const toast = useToast()
-  const dispatch = useDispatch()
-  const data = useSelector((store) => store.AppReducer.todoData)
-  const isLoading = useSelector((store) => store.AppReducer.isLoading)
+  const [todo,SetTodo] = useState("");
+  const [heading,setHeading] = useState("");
+  const [status,setStatus] = useState("false");
+  const [tokenof,setTokenof] = useState(getLocalData("token"));
+  const toast = useToast();
+  const dispatch = useDispatch();
+  const data = useSelector((store) => store.AppReducer.todoData);
+  const isLoading = useSelector((store) => store.AppReducer.isLoading);
 
-
+  const [load,setLoad] = useState(false)
   const navigate = useNavigate();
   
 const getTodo = () => {
-
 dispatch(GettingTheTodosData(tokenof))
-  // let url = `https://todobackend-asac.onrender.com/todo`
-  // const config = {
-  //     headers:{
-  //         "Authorization": `Bearer ${tokenof}`
-  //     }
-  // };
-
-  //     axios.get(url , config)
-  // .then((response) => {
-
-  //     setData(response.data)
-
-  // })  
-  // .catch(function (error) {
-
-  // })
 }
       
 useEffect(() => {
   
-  getTodo()
+  if (data.length===0) {
+    getTodo()
+  }
   
 }, [])
 
@@ -77,7 +62,7 @@ useEffect(() => {
 const addtodo = () => {
 
     if (todo&&heading&&status) {
-
+      setLoad(true)
       const data = {
         Heading:heading,
         Todo: todo,
@@ -92,6 +77,7 @@ const addtodo = () => {
       
       axios.post(url ,data,config)
       .then((response) => {
+        setLoad(false)
         if (response.data=="Todo Created Successfully")
         toast({
           position: 'top',
@@ -102,9 +88,20 @@ const addtodo = () => {
           isClosable: true,
         })
         getTodo()
+        SetTodo("")
+        setHeading("")
       })  
       .catch(function (error) {
+        setLoad(false)
           console.log(error);
+          toast({
+            position: 'top',
+            marginTop: '150px',
+            description: error,
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+          })
       })
     }
     else {
@@ -140,12 +137,14 @@ const addtodo = () => {
       >
         <FormLabel>Heading</FormLabel>
         <Input 
-          placeholder='Heading' 
+          placeholder='Heading'
+          value={heading} 
           onChange={(e)=> {setHeading(e.target.value)} } 
         />
         <FormLabel>Todo</FormLabel>
         <Input 
-          placeholder='Todo' 
+          placeholder='Todo'
+          value={todo} 
           onChange={(e)=> {SetTodo(e.target.value)} } 
         />
         <FormLabel as='legend'>Status</FormLabel>
@@ -159,14 +158,15 @@ const addtodo = () => {
             </HStack>
           </RadioGroup>
 
-        <Input 
-          type={"submit"} 
+        <Button 
+          // type={"submit"}
+          isLoading={load ? load : false} 
           color={'white'} 
           bg={"rgb(48,112,240)"} 
           _hover={{
                 bg: 'rgb(2,18,39)',
                 color: 'white'
-              }} onClick={() =>{addtodo()}} />
+              }} onClick={() =>{addtodo()}} > Submit </Button>
         </FormControl  >
       </Box>
 

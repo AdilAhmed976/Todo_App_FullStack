@@ -1,4 +1,4 @@
-import { Box, Button, useToast } from '@chakra-ui/react';
+import { Box, Button, CircularProgress, useToast } from '@chakra-ui/react';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { getLocalData } from '../../utils/localStorage';
@@ -7,26 +7,28 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { EditModal } from '../editpage/EditModal';
 import { DeleteModal } from '../delete/DeleteModal';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { GettingTheTodosData } from '../../Redux/AppReducer/action'
 
 export const AllTodo = () => {
 
-    const toast = useToast();
     const [tokenof,setTokenof] = useState(getLocalData("token"));
     const [data,setData] = useState([]);
+    const toast = useToast();
 
-    const [page,setPage] = useState(1);
     const perPage = 6;
-    const totalPages = Math.ceil(useSelector((store) => store.AppReducer.todoData.length) / 8)
+    const [page,setPage] = useState(1);
+    const totalPages = Math.ceil(useSelector((store) => store.AppReducer.todoData.length) / perPage);
+    const todoData =useSelector((store) => store.AppReducer.todoData) ;
+    const isLoading =useSelector((store) => store.AppReducer.isLoading) ;
 
-    const  noOfButtons = new Array(totalPages).fill(0)
-console.log(noOfButtons,totalPages)
-
+    const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+    const  noOfButtons = new Array(totalPages).fill(0);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     
-const getTodo = (page) => {
-
+const getAllTodo = (page) => {
+    setData([])
     let url = `https://todobackend-asac.onrender.com/todo?page=${page}&limit=6`
     const config = {
         headers:{
@@ -34,25 +36,29 @@ const getTodo = (page) => {
         }
     };
 
-        axios.get(url , config)
+    axios.get(url , config)
     .then((response) => {
         setData(response.data)
     })  
     .catch(function (error) {
-        // console.log(error);
+
     })
 }
         
 useEffect(() => {
     
-    getTodo()
+    if (isAuth && todoData.length===0) {
+        dispatch(GettingTheTodosData(tokenof))  
+    }
+    getAllTodo()
     
 }, [])
     
-
+console.log(data)
   return (
     <Box>
-        <Box  
+
+        { data.length>0 ? <Box  
             display={"grid"}  
             gap={"40px"} padding={'20px'}  
             gridTemplateColumns={{ base: "repeat(1,1fr)", sm: "repeat(1,1fr)", md: "repeat(2,1fr)", lg: "repeat(2,1fr)", xl: "repeat(3,1fr)",'2xl': 'repeat(3,1fr)'}}
@@ -70,16 +76,17 @@ useEffect(() => {
                                 <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
                             </Box>
                             <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
-                            <EditModal id={e._id} getTodo={getTodo} />
+                            <EditModal id={e._id} headProp={e.Heading} todoProp={e.Todo} getTodo={getAllTodo} />
                             
-                            <DeleteModal id={e._id} getTodo={getTodo} />
+                            <DeleteModal id={e._id} getTodo={getAllTodo} />
                             </Box>
                         </Box>
             })}
-        </Box>
+        </Box> : <Box display="flex" justifyContent={"center"} alignItems={'center'} minHeight={"200px"} > <CircularProgress isIndeterminate color='rgb(253,216,53)' /> </Box> }
+
         <Box>
             <Box> { noOfButtons?.map((e,i) => {
-                 return <Button value={i+1} onClick={(e)=>{getTodo(e.target.value)}}>{i+1}</Button>
+                 return <Button key={e.id} value={i+1} onClick={(e)=>{getAllTodo(e.target.value)}}>{i+1}</Button>
             })
                 }
             </Box> 

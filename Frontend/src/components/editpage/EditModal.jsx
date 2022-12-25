@@ -21,15 +21,15 @@ import { useNavigate } from 'react-router-dom'
 import { getLocalData } from '../../utils/localStorage'
 import axios from 'axios'
 import { FaRegEdit } from 'react-icons/fa'
-export const EditModal = ({id,getTodo}) => {
+export const EditModal = ({id,getTodo,headProp,todoProp}) => {
   //  export  function InitialFocus(e) {
         const { isOpen, onOpen, onClose } = useDisclosure()
       
         const initialRef = React.useRef(null)
         const finalRef = React.useRef(null)
 
-        const [todo,SetTodo] = useState("")
-        const [heading,setHeading] = useState("")
+        const [todo,SetTodo] = useState(todoProp || "")
+        const [heading,setHeading] = useState(headProp || "")
         const [status,setStatus] = useState("false")
         const [tokenof,setTokenof] = useState(getLocalData("token"))
         const toast = useToast()
@@ -102,12 +102,12 @@ const addtodo = () => {
                 <ModalBody pb={6}>
                   <FormControl>
                     <FormLabel>Heading</FormLabel>
-                    <Input ref={initialRef} placeholder='Heading' onChange={(e)=> {setHeading(e.target.value)} }  />
+                    <Input ref={initialRef} value={heading} placeholder='Heading' onChange={(e)=> {setHeading(e.target.value)} }  />
                   </FormControl>
       
                   <FormControl mt={4}>
                     <FormLabel>Todo</FormLabel>
-                    <Input placeholder='Todo' onChange={(e)=> {SetTodo(e.target.value)} }  />
+                    <Input value={todo} placeholder='Todo' onChange={(e)=> {SetTodo(e.target.value)} }  />
                   </FormControl>
 
                   <FormControl mt={4}>

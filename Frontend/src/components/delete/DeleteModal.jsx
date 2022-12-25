@@ -81,37 +81,16 @@ const addtodo = () => {
               <ModalOverlay />
               <ModalContent>
                 <ModalHeader>Delete TODO?</ModalHeader>
-                <ModalCloseButton />
-                {/* <ModalBody pb={6}>
-                  <FormControl>
-                    <FormLabel>Heading</FormLabel>
-                    <Input ref={initialRef} placeholder='Heading' onChange={(e)=> {setHeading(e.target.value)} }  />
-                  </FormControl>
-      
-                  <FormControl mt={4}>
-                    <FormLabel>Todo</FormLabel>
-                    <Input placeholder='Todo' onChange={(e)=> {SetTodo(e.target.value)} }  />
-                  </FormControl>
-
-                  <FormControl mt={4}>
-                  <FormLabel as='legend'>Status</FormLabel>
-                    <RadioGroup 
-                        defaultValue='false' 
-                        onClick={(e)=> {setStatus(e.target.value)}} 
-                    >
-                        <HStack spacing='24px'>
-                        <Radio value={"true"}>Completed</Radio>
-                        <Radio value={"false"}>Not Completed</Radio>
-                        </HStack>
-                    </RadioGroup>
-                  </FormControl>
-                </ModalBody> */}
-      
+                <ModalCloseButton />     
                 <ModalFooter>
-                  <Button colorScheme='blue' mr={3}  onClick={() =>{addtodo()}} >
-                    Save
+                  <Button colorScheme='blue' mr={3}  onClick={() =>{
+                    addtodo()
+              onClose
+                    
+                    }} >
+                    Yes
                   </Button>
-                  <Button onClick={onClose}>Cancel</Button>
+                  <Button onClick={onClose}>No</Button>
                 </ModalFooter>
               </ModalContent>
             </Modal>
