@@ -11,9 +11,9 @@ website link :- https://todo-frontend-tau.vercel.app/
 ##  Tech-stack used
   
    ```
-   Frontend : HTML, CSS, Javascript, React, Chakra UI.
+   Frontend : HTML, CSS, Javascript, React, Redux, Chakra UI.
    
-   Backend   : Express, MongoDB, Node Js , mongoose, Deployed backennd on Render
+   Backend   : Express, MongoDB, Node Js , mongoose, Deployed backend on Render
    ```
 ## Features
 
