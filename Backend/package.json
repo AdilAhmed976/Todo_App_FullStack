@@ -1,6 +1,7 @@
 {
   "name": "mvc_todo",
   "version": "1.0.0",
+  "description": "", 
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -17,7 +18,5 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
     "nodemon": "^2.0.20"
-  },
-  "devDependencies": {},
-  "description": ""
+  }
 }

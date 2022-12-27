@@ -7,18 +7,47 @@ const {TodoModel} = require("../model/Todo.model")
 const todoController = Router() 
 
 todoController.get("/", async (req,res) => {
-    const {page=1,limit} = req.query
+    const {page=1,limit,filter} = req.query
+    console.log(filter)
     const todo = await TodoModel.find({userId :req.body.userId}).limit(limit).skip((page-1)*limit)
+    res.send(todo)
+})
+
+// api for current day 
+todoController.get("/today", async (req,res) => {
+    const {page=1,limit,filter,day} = req.query
+    console.log(filter)
+    const todo = await TodoModel.find({userId :req.body.userId, DateOf: day}).limit(limit).skip((page-1)*limit)
+    res.send(todo)
+})
+
+// api for filters day 
+todoController.get("/filters", async (req,res) => {
+    const {page=1,limit,start,end} = req.query
+    console.log(start,end)
+    const todo = await TodoModel.find({userId :req.body.userId, DateOf: { $gte: start, $lte: end  }}).limit(limit).skip((page-1)*limit)
     res.send(todo)
 })
  
 todoController.post("/create", async (req,res) => {
     const {Heading,Todo,Status,userId} = req.body
+    let dateTime = new Date().toJSON();
+
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    // This arrangement can be altered based on how we want the date's format to appear.
+    let currentDate = `${day}-${month}-${year}`;
+
+
     const todo = new TodoModel({
         Heading,
-        Todo,
+        Todo, 
         Status,
-        userId
+        userId,
+        DateOf:currentDate
     }) 
     try {
         await todo.save()
