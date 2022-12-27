@@ -9,6 +9,7 @@ import { Pending } from '../components/pending/Pending';
 import { AllTodo } from '../components/Homepage/AllTodo';
 import { ReqAuth } from '../protectedRoute/ReqAuth';
 import { Edit } from '../components/editpage/Edit';
+import { Filters } from '../components/Filters/Filters';
 export const AllRoutes = () => {
   return (
     <Box>
@@ -16,6 +17,7 @@ export const AllRoutes = () => {
 
               <Route path="/" element={<ReqAuth> <Homepage/> </ReqAuth> }/>           
               <Route path="/todo" element={ <ReqAuth> <AllTodo/> </ReqAuth>} />
+              <Route path="/filter" element={ <ReqAuth> <Filters/> </ReqAuth>} />
               <Route path="/completed" element={<ReqAuth> <Completed/> </ReqAuth>} />
               <Route path="/pending" element={<ReqAuth> <Pending/> </ReqAuth> } />
               <Route path="todo/edit/:id" element={<ReqAuth> <Edit/> </ReqAuth> } />

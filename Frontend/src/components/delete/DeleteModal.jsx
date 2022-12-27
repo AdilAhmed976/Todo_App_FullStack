@@ -70,8 +70,19 @@ const addtodo = () => {
 
 
         return (
-          <>
-            <Button leftIcon={<DeleteIcon/>} onClick={onOpen}>Delete</Button>     
+          < >
+            <Button
+              bg={"lightred"}
+              border={"2px solid white"}
+              _hover={{bg:"lightred",color:"red",borderColor:"red"}} 
+              _focus={{bg:"lightred",color:"red",borderColor:"red"}} 
+              color="red" 
+              leftIcon={<DeleteIcon/>} 
+              onClick={onOpen}
+              shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+            >
+              Delete
+            </Button>     
             <Modal
               initialFocusRef={initialRef}
               finalFocusRef={finalRef}
@@ -83,10 +94,16 @@ const addtodo = () => {
                 <ModalHeader>Delete TODO?</ModalHeader>
                 <ModalCloseButton />     
                 <ModalFooter>
-                  <Button colorScheme='blue' mr={3}  onClick={() =>{
+                  <Button 
+                   bg={"red"}
+                   border={"2px solid red"}
+                   _hover={{bg:"lightred",color:"white",borderColor:"black"}} 
+                   _focus={{bg:"lightred",color:"white",borderColor:"black"}} 
+                   color="white"  
+                  mr={3}  
+                  onClick={() =>{
                     addtodo()
-              onClose
-                    
+                    onClose
                     }} >
                     Yes
                   </Button>

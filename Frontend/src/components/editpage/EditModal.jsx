@@ -88,32 +88,50 @@ const addtodo = () => {
 
         return (
           <>
-            <Button leftIcon={<FaRegEdit/>} onClick={onOpen}>Edit</Button>     
+            <Button 
+              bg={"rgb(23,194,46)"}
+              border={"1px solid rgb(23,194,46)"}
+              _hover={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+              _focus={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+              color="white"
+              shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" 
+              leftIcon={<FaRegEdit/>} 
+              onClick={onOpen}
+            >
+              Edit
+            </Button>     
             <Modal
               initialFocusRef={initialRef}
               finalFocusRef={finalRef}
               isOpen={isOpen}
               onClose={onClose}
+              fontFamily="Roboto Mono" 
             >
               <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Edit TODO</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody pb={6}>
+              <ModalContent bg={"rgb(0,30,43)"}  >
+                <ModalHeader 
+                  color={"white"} 
+                  fontFamily="Roboto Mono"  
+                >
+                  Edit Todo
+                </ModalHeader>
+                <ModalCloseButton fontWeight={"500"} color={"rgb(0,104,74)"} />
+                <ModalBody pb={6} color={"white"} fontFamily="Roboto Mono"  >
                   <FormControl>
-                    <FormLabel>Heading</FormLabel>
-                    <Input ref={initialRef} value={heading} placeholder='Heading' onChange={(e)=> {setHeading(e.target.value)} }  />
+                    <FormLabel  >Heading</FormLabel>
+                    <Input focusBorderColor='rgb(0,104,74)' ref={initialRef} value={heading} placeholder='Heading' onChange={(e)=> {setHeading(e.target.value)} }  />
                   </FormControl>
       
                   <FormControl mt={4}>
-                    <FormLabel>Todo</FormLabel>
-                    <Input value={todo} placeholder='Todo' onChange={(e)=> {SetTodo(e.target.value)} }  />
+                    <FormLabel >Todo</FormLabel>
+                    <Input focusBorderColor='rgb(0,104,74)' _focus={{borderColor:"rgb(0,104,74)"}} value={todo} placeholder='Todo' onChange={(e)=> {SetTodo(e.target.value)} }  />
                   </FormControl>
 
                   <FormControl mt={4}>
                   <FormLabel as='legend'>Status</FormLabel>
                     <RadioGroup 
-                        defaultValue='false' 
+                        defaultValue='false'
+                        colorScheme={"green"}
                         onClick={(e)=> {setStatus(e.target.value)}} 
                     >
                         <HStack spacing='24px'>
@@ -125,7 +143,16 @@ const addtodo = () => {
                 </ModalBody>
       
                 <ModalFooter>
-                  <Button colorScheme='blue' mr={3}  onClick={() =>{addtodo()}} >
+                  <Button 
+                    bg='rgb(0,104,74)'
+                    color="white"
+                    mr={3}  
+                    _hover={{bg:"rgb(0,104,74)"}} 
+                    _focus={{bg:"rgb(0,104,74)"}} 
+                    onClick={() =>{
+                      addtodo()
+                    }} 
+                  >
                     Save
                   </Button>
                   <Button onClick={onClose}>Cancel</Button>

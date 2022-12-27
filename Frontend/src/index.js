@@ -11,7 +11,7 @@ root.render(
     <ChakraProvider>
       <BrowserRouter>
       <Provider store={store} >
-        <App />
+        <App  />
       </Provider>
       </BrowserRouter>
     </ChakraProvider>

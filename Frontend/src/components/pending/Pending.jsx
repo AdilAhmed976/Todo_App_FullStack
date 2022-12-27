@@ -67,7 +67,9 @@ useEffect(() => {
                             border={'0.5px solid lightgray'} 
                             px={"40px"} py={"40px"} fontFamily="Roboto Mono" 
                             boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} 
-                            borderRadius={"20px"} bg={"rgb(244,248,254)"} 
+                            borderRadius={"20px"} bg={"rgb(0,30,43)"} 
+                            color={"white"}
+                            fontWeight="500"
                         >
                             <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
                                 <Box> {`Heading : ${e.Heading}`}</Box>

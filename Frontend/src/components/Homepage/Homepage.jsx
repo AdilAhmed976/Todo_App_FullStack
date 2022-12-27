@@ -10,7 +10,9 @@ import { useNavigate } from 'react-router-dom'
 import { EditModal } from '../editpage/EditModal'
 import { DeleteModal } from '../delete/DeleteModal'
 import { useDispatch, useSelector } from 'react-redux'
-import { GettingTheTodosData } from '../../Redux/AppReducer/action'
+import { GettingTheTodosData, GettingTodaysTodosData } from '../../Redux/AppReducer/action'
+import { useRef } from 'react'
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 
 
 export const Homepage = () => {
@@ -19,11 +21,11 @@ export const Homepage = () => {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 5
+      items: 4
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4
+      items: 3
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -41,23 +43,32 @@ export const Homepage = () => {
   const toast = useToast();
   const dispatch = useDispatch();
   const data = useSelector((store) => store.AppReducer.todoData);
+  const todayData = useSelector((store) => store.AppReducer.todayData);
   const isLoading = useSelector((store) => store.AppReducer.isLoading);
+
+  // // checking the screen size so that well set the count of slide according to it
+  // const [countOfSlide,setCountOfSlide] = useState(
+  //   window.window.innerWidth<=responsive.desktop.breakpoint.max&& window.window.innerWidth>=responsive.desktop.breakpoint.min ? 3  :
+  //   window.window.innerWidth<=responsive.tablet.breakpoint.max&& window.window.innerWidth>=responsive.tablet.breakpoint.min ? 2 
+  //   :1
+  //   )
 
   const [load,setLoad] = useState(false)
   const navigate = useNavigate();
+  const carouselRef = useRef(null)
   
 const getTodo = () => {
-dispatch(GettingTheTodosData(tokenof))
+  dispatch(GettingTodaysTodosData(tokenof))
+
 }
       
 useEffect(() => {
   
   if (data.length===0) {
-    getTodo()
+    dispatch(GettingTheTodosData(tokenof)) 
   }
-  
+  dispatch(GettingTodaysTodosData(tokenof))
 }, [])
-
 
 const addtodo = () => {
 
@@ -86,7 +97,7 @@ const addtodo = () => {
           status: 'success',
           duration: 3000,
           isClosable: true,
-        })
+        }) 
         getTodo()
         SetTodo("")
         setHeading("")
@@ -126,8 +137,9 @@ const addtodo = () => {
         borderRadius={"50px"}  
         boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"} 
         height={'60vh'} 
-        w={{ base: "90%", sm: "80%", md: "60%", lg: "50%", xl: "50%",'2xl': '50%'}}
-        margin={"auto"} 
+        w={{ base: "90%", sm: "80%", md: "60%", lg: "50%", xl: "50%",'2xl': '30%'}}
+        margin={"auto"}
+        my="40px"
       >
       <FormControl 
         width={"80%"} 
@@ -181,21 +193,32 @@ const addtodo = () => {
                       <CircularProgress isIndeterminate color='rgb(253,216,53)' /> 
                     </Box> 
                   :
-                <Carousel 
+                  <Box>
+                <Carousel ref={carouselRef}
                   responsive={responsive} 
-                  showDots={true} swipeable={true} arrows={true}
+                  showDots={true} 
+                  renderDotsOutside={true}
+                  swipeable={true} 
+                  arrows={true}
+                  centerMode={false}
+                  dotListClass={{backgroundColor:"red"}}
+                  border={"1px solid black"}
                 >
-                  {!!data && data?.map((e) => {
+                  {!!todayData && todayData?.map((e) => {
                     return <Box key={e._id} 
                     border={'0.5px solid lightgray'} 
                     px={"40px"} py={"40px"} fontFamily="Roboto Mono" 
                     boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} 
-                    borderRadius={"20px"} bg={"rgb(244,248,254)"} 
+                    borderRadius={"20px"} bg={"rgb(0,30,43)"} 
+                    color={"white"}
+                    fontWeight="500"
+                    mr={"10px"} 
                   >
                       <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
                           <Box> {`Heading : ${e.Heading}`}</Box>
                           <Box> {`Todo : ${e.Todo}`}</Box>
                           <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
+                          <Box> {`Date : ${e.DateOf}`}</Box>
                       </Box>
                       <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
                         <EditModal id={e._id} getTodo={getTodo} />
@@ -203,6 +226,9 @@ const addtodo = () => {
                       </Box>
                   </Box>
                   })}
-                  </Carousel>}
+                  </Carousel>
+                  
+                  </Box>
+                  }
                   </Box>)
 }
