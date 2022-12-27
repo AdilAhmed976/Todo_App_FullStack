@@ -32,7 +32,7 @@ website link :- https://todo-frontend-tau.vercel.app/
   
   **1) Home Page**
   ---
-<img src="https://i.imgur.com/08B0gyd.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/P1rsmKC.png" alt="Logo" marginTop='10px' width="1000" >
 
   **2) User Login Signup Page**
    ---
@@ -41,15 +41,15 @@ website link :- https://todo-frontend-tau.vercel.app/
 
   **3) Todo Page**
   ---
-<img src="https://i.imgur.com/abtiN2s.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/qp0Rqn0.png" alt="Logo" marginTop='10px' width="1000" >
 
   **4) Edit Modal**
   ---
-<img src="https://i.imgur.com/zUT1RNk.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/P1royFM.png" alt="Logo" marginTop='10px' width="1000" >
 
   **5) Delete Modal**
   ---
-<img src="https://i.imgur.com/ZOY1ZfM.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/1iVF0us.png" alt="Logo" marginTop='10px' width="1000" >
 
  
  
