@@ -32,24 +32,24 @@ website link :- https://todo-frontend-tau.vercel.app/
   
   **1) Home Page**
   ---
-<img src="https://i.imgur.com/P1rsmKC.png" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/pFHMNQY.png" alt="Logo" marginTop='10px' width="1000" >
 
   **2) User Login Signup Page**
    ---
-<img src="https://i.imgur.com/xRIad28.jpg" alt="Logo" marginTop='10px' width="1000" >
-<img src="https://i.imgur.com/4cpo4oI.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/pPxejqP.png" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/GNmGQlF.png" alt="Logo" marginTop='10px' width="1000" >
 
   **3) Todo Page**
   ---
-<img src="https://i.imgur.com/qp0Rqn0.png" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/kmOa5el.png" alt="Logo" marginTop='10px' width="1000" >
 
   **4) Edit Modal**
   ---
-<img src="https://i.imgur.com/P1royFM.png" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/dHZ0rYw.png" alt="Logo" marginTop='10px' width="1000" >
 
   **5) Delete Modal**
   ---
-<img src="https://i.imgur.com/1iVF0us.png" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/aRPdyvn.png" alt="Logo" marginTop='10px' width="1000" >
 
  
  
