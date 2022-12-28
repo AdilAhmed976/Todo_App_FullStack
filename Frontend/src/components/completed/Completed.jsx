@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { EditModal } from '../editpage/EditModal'
 import { DeleteModal } from '../delete/DeleteModal'
 import { GettingTheTodosData } from '../../Redux/AppReducer/action'
+import styles from "../../App.css"
 
 export const Completed = () => {
 
@@ -73,7 +74,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <Box>
+    <Box bg={"rgb(0,104,74)"} >
 
         { data.length>0 ? <Box  
             display={"grid"}  
@@ -88,6 +89,7 @@ useEffect(() => {
                             borderRadius={"20px"} bg={"rgb(0,30,43)"} 
                             color={"white"}
                             fontWeight="500"
+                            className='scrollOf'
                         >
                             <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
                                 <Box> {`Heading : ${e.Heading}`}</Box>
@@ -101,7 +103,7 @@ useEffect(() => {
                             </Box>
                         </Box>
             })}
-        </Box> : <Box display="flex" justifyContent={"center"} alignItems={'center'} minHeight={"200px"} >  <CircularProgress isIndeterminate color='rgb(253,216,53)' /> </Box> }
+        </Box> : <Box display="flex" justifyContent={"center"} alignItems={'center'} minHeight={"200px"} >  <CircularProgress isIndeterminate color='rgb(0,30,43)' /> </Box> }
 
         <Box>
             {/* <Box> { noOfButtons?.map((e,i) => {

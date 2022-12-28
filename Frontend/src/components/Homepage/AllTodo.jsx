@@ -72,7 +72,7 @@ useEffect(() => {
     
 }, [initialPageParams])
 
-  return ( <Box>
+  return ( <Box bg={"rgb(0,104,74)"} >
 
     <Box>
         {data.length>0 ? 
@@ -87,11 +87,12 @@ useEffect(() => {
                         px={"40px"} 
                         py={"40px"} 
                         fontFamily="Roboto Mono" 
-                        boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} 
+                        shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" 
                         borderRadius={"20px"} 
                         bg={"rgb(0,30,43)"} 
                         color={"white"}
                         fontWeight="500"
+                        className='scrollOf'
                     >
                         <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
                             <Box> {`Heading : ${e.Heading}`}</Box>
@@ -114,7 +115,7 @@ useEffect(() => {
         alignItems={'center'} 
         minHeight={"600px"} 
     > 
-        <CircularProgress isIndeterminate color='rgb(253,216,53)' /> 
+        <CircularProgress isIndeterminate color='rgb(0,30,43)' /> 
         </Box> 
     }
     </Box>
@@ -122,7 +123,8 @@ useEffect(() => {
     <Box 
         display={"flex"}
         justifyContent={"center"}
-        alignItems={"center"} 
+        alignItems={"center"}
+        py={"20px"} 
     >
         <Button 
             disabled={page == 1 || data.length==0 ? true : false}
@@ -142,7 +144,7 @@ useEffect(() => {
             <ChevronLeftIcon/>
         </Button>
 
-        <Box bg="green" px="16px" py={"8px"} mx="16px" borderRadius={"50px"} color="white" >
+        <Box bg="green" px="16px" py={"8px"} mx="16px" borderRadius={"50px"} color="white" border={"2px solid white"} >
             {page}
         </Box>
 

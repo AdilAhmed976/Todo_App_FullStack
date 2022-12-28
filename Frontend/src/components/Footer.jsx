@@ -69,9 +69,11 @@ import { BsGlobe2 } from "react-icons/bs";
           spacing={4}
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
-            <img style={{width:"5%"}} src="https://i.imgur.com/d2AJUpY.png" alt="" srcset="" />
+            <Box width={{ base: "36%", sm: "36%", md: "16%", lg: "16%", xl: "16%",'2xl': '16%'}} >
+            <img style={{width:"100%"}} src="https://i.imgur.com/MUpQoOE.png" alt="" srcset="" />
+            </Box>
           {/* <Logo /> */}
-          <Text fontFamily={"Roboto Mono"} fontWeight="500" >© Made with Love by Adil Ahmed ✌️</Text>
+          <Text fontFamily={"Roboto Mono"} fontWeight="500" >© App created by Adil Ahmed ✌️</Text>
           <Stack direction={'row'} spacing={6}>
             <SocialButton label={'Portfolio'}  >
             <a href="https://www.adilahmed.in/" target="_blank" rel="noopener noreferrer">

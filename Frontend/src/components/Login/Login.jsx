@@ -71,25 +71,29 @@ export default function Login() {
       h={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      fontFamily={"Roboto Mono"}
+      bg={"rgb(0,104,74)"}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"}  bg={"rgb(0,30,43)"} borderRadius={"10px"}  spacing={8} mx={"auto"} maxW={"lg"} py={12} px={8}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Log in to your Account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
+          <Heading fontSize={"4xl"} color={"white"} >Log in to your Account</Heading>
+          <Text fontSize={"lg"} color={"white"}>
             to enjoy all of our cool <Link color={"blue.400"}>features</Link> ✌️
           </Text>
         </Stack>
         <Box
+          bg={"rgb(0,30,43)"}
+          boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"} 
           rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
+          color="white"
+          border={"2px solid rgb(0,104,74)"}
           p={8}
         >
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
               <Input
+                focusBorderColor='rgb(0,104,74)'
                 type="email"
                 value={email}
                 onChange={(e) => {
@@ -102,6 +106,7 @@ export default function Login() {
 
               <InputGroup>
                 <Input
+                  focusBorderColor='rgb(0,104,74)'
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => {
@@ -123,17 +128,18 @@ export default function Login() {
             <Stack spacing={10}>
               <Button
                 onClick={handleSignUp}
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
+                bg={"rgb(23,194,46)"}
+                border={"1px solid rgb(23,194,46)"}
+                _hover={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+                _focus={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+                color="white"
+                shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
                 isLoading={isLoading ? isLoading : false}
               >
                 Log in
               </Button>
               <Text>
-                Don't have an Account ? <Link to="/signup"> Sign-up</Link>
+                Don't have an Account ? <Link to="/signup" style={{textDecoration:"underline",color:"rgb(23,194,46)"}} > Sign-up</Link>
               </Text>
             </Stack>
           </Stack>

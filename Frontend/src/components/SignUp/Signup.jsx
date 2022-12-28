@@ -62,44 +62,52 @@ import { useDispatch, useSelector } from 'react-redux';
     }
 
     return (
-      <Flex h={'100vh'}
-      align={'center'}
-      justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      <Flex 
+        h={"100vh"}
+        align={"center"}
+        justify={"center"}
+        fontFamily={"Roboto Mono"}
+        bg={"rgb(0,104,74)"}
+      >
+      <Stack boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"}  bg={"rgb(0,30,43)"} borderRadius={"10px"}  spacing={8} mx={"auto"} maxW={"lg"} py={12} px={8}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
+          <Heading fontSize={'4xl'} color={"white"} >Sign in to your account</Heading>
+          <Text fontSize={'lg'} color={'white'}>
             to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
           </Text>
         </Stack>
         <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          p={8}>
+          bg={"rgb(0,30,43)"}
+          boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"} 
+          rounded={"lg"}
+          color="white"
+          border={"2px solid rgb(0,104,74)"}
+          p={8}
+          >
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} />
+              <Input focusBorderColor='rgb(0,104,74)' type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} />
+              <Input focusBorderColor='rgb(0,104,74)' type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} />
             </FormControl>
             <Stack spacing={10}>
               
               <Button
                 isLoading={isLoading ? isLoading : false}
                 onClick={handleSignUp}
-                bg={'blue.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'blue.500',
-                }}>
+                bg={"rgb(23,194,46)"}
+                border={"1px solid rgb(23,194,46)"}
+                _hover={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+                _focus={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+                color="white"
+                shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+                >
                 Sign in
               </Button>
-              <Text>Already have a Account ? <Link to="/login" > Log In</Link></Text>
+              <Text>Already have a Account ? <Link to="/login" style={{textDecoration:"underline",color:"rgb(23,194,46)"}} > Log In</Link></Text>
             </Stack>
           </Stack>
         </Box>

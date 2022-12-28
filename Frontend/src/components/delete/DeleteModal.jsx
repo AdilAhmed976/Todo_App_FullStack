@@ -71,15 +71,15 @@ const addtodo = () => {
 
         return (
           < >
-            <Button
+            <Button fontFamily={"Roboto Mono"}
               bg={"lightred"}
               border={"2px solid white"}
               _hover={{bg:"lightred",color:"red",borderColor:"red"}} 
               _focus={{bg:"lightred",color:"red",borderColor:"red"}} 
-              color="red" 
               leftIcon={<DeleteIcon/>} 
               onClick={onOpen}
               shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+              color={"white"}
             >
               Delete
             </Button>     
@@ -90,8 +90,8 @@ const addtodo = () => {
               onClose={onClose}
             >
               <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Delete TODO?</ModalHeader>
+              <ModalContent bg={"rgb(0,30,43)"} >
+                <ModalHeader color={"white"} >Delete TODO?</ModalHeader>
                 <ModalCloseButton />     
                 <ModalFooter>
                   <Button 

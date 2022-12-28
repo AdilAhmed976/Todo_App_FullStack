@@ -90,7 +90,7 @@ console.log("DATE",currentDate)
 	};
 	axios.get(url , config)
 	.then((response) => {
-
+console.log(response.data)
 		dispatch(getTodayDataSuccess(response.data))
 	})  
 	.catch(function (error) {

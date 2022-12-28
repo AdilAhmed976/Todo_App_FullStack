@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, CircularProgress, FormControl, FormLabel, HStack, Input, Radio, RadioGroup, useToast } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, CircularProgress, FormControl, FormLabel, HStack, Input, Radio, RadioGroup, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
@@ -12,6 +12,7 @@ import { DeleteModal } from '../delete/DeleteModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { GettingTheTodosData, GettingTodaysTodosData } from '../../Redux/AppReducer/action'
 import { useRef } from 'react'
+import styles from "../../App.css"
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 
 
@@ -129,7 +130,7 @@ const addtodo = () => {
 }
   
   return (
-    <Box >
+    <Box bg={"rgb(0,104,74)"} p={{ base: "10px", sm: "20px", md: "30px", lg: "40px", xl: "40px",'2xl': '40px'}} >
       <Box 
         display={"flex"} 
         justifyContent={"center"} 
@@ -137,9 +138,11 @@ const addtodo = () => {
         borderRadius={"50px"}  
         boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"} 
         height={'60vh'} 
-        w={{ base: "90%", sm: "80%", md: "60%", lg: "50%", xl: "50%",'2xl': '30%'}}
+        w={{ base: "90%", sm: "80%", md: "60%", lg: "50%", xl: "50%",'2xl': '40%'}}
         margin={"auto"}
-        my="40px"
+        // py="40px"
+        bg={"rgb(0,30,43)"}
+        color={"white"} fontFamily="Roboto Mono"
       >
       <FormControl 
         width={"80%"} 
@@ -149,18 +152,20 @@ const addtodo = () => {
       >
         <FormLabel>Heading</FormLabel>
         <Input 
+        focusBorderColor='rgb(0,104,74)'
           placeholder='Heading'
           value={heading} 
           onChange={(e)=> {setHeading(e.target.value)} } 
         />
         <FormLabel>Todo</FormLabel>
         <Input 
+        focusBorderColor='rgb(0,104,74)'
           placeholder='Todo'
           value={todo} 
           onChange={(e)=> {SetTodo(e.target.value)} } 
         />
         <FormLabel as='legend'>Status</FormLabel>
-          <RadioGroup 
+          <RadioGroup colorScheme={"green"}
             defaultValue='false' 
             onClick={(e)=> {setStatus(e.target.value)}} 
           >
@@ -173,15 +178,21 @@ const addtodo = () => {
         <Button 
           // type={"submit"}
           isLoading={load ? load : false} 
-          color={'white'} 
-          bg={"rgb(48,112,240)"} 
-          _hover={{
-                bg: 'rgb(2,18,39)',
-                color: 'white'
-              }} onClick={() =>{addtodo()}} > Submit </Button>
+          bg={"rgb(23,194,46)"}
+          border={"1px solid rgb(23,194,46)"}
+          _hover={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+          _focus={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+          color="white"
+          shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" 
+          onClick={() =>{addtodo()}} > Submit </Button>
         </FormControl  >
       </Box>
 
+<Box textAlign={"center"} padding={"20px"} fontFamily="Roboto Mono" fontSize={"26px"} fontWeight={"600"} >
+  <Text>
+  Today's Tasks
+  </Text>
+</Box>
       {/* <Box> */}
       { isLoading ? <Box 
                       display={"flex"} 
@@ -190,7 +201,7 @@ const addtodo = () => {
                       alignSelf="center"
                       minHeight={"200px"} 
                     > 
-                      <CircularProgress isIndeterminate color='rgb(253,216,53)' /> 
+                      <CircularProgress isIndeterminate color='rgb(0,30,43)' /> 
                     </Box> 
                   :
                   <Box>
@@ -212,7 +223,8 @@ const addtodo = () => {
                     borderRadius={"20px"} bg={"rgb(0,30,43)"} 
                     color={"white"}
                     fontWeight="500"
-                    mr={"10px"} 
+                    mr={"10px"}
+                    className='scrollOf'
                   >
                       <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
                           <Box> {`Heading : ${e.Heading}`}</Box>

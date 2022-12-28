@@ -1,9 +1,12 @@
-import { Box, Button, Checkbox, CircularProgress, Input, Text } from '@chakra-ui/react'
+import { Alert, AlertIcon, Box, Button, Checkbox, CircularProgress, Input, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GettingFilteredTodosData, GettingTheTodosData } from '../../Redux/AppReducer/action'
 import { getLocalData } from '../../utils/localStorage'
 import dayjs from 'dayjs'
+import { EditModal } from '../editpage/EditModal'
+import { DeleteModal } from '../delete/DeleteModal'
+import styles from "../../App.css"
 
 export const Filters = () => {
 
@@ -13,7 +16,8 @@ export const Filters = () => {
     const isLoading = useSelector((store) => store.AppReducer.isLoading);
     const dispatch = useDispatch();
     const heightOf= window.window.innerHeight-60
-console.log(window.window.innerHeight)
+
+
     const filter = () => {
     
         let startX = dayjs(startDate).format('DD-MM-YYYY')
@@ -25,7 +29,9 @@ console.log(window.window.innerHeight)
         }
         dispatch(GettingFilteredTodosData(payload))
     }
-
+const getAllTodo = () => {
+    filter()  
+}
 
     useEffect(() => {
        
@@ -33,15 +39,17 @@ console.log(window.window.innerHeight)
     }, [])
 
   return (
-    <Box 
+    <Box bg={"rgb(0,104,74)"} 
         display={"flex"} 
         flexDirection={{ base: "column", sm: "column", md: "column", lg: "row", xl: "row",'2xl': 'row'}} 
     >
         <Box 
             width={{ base: "100%", sm: "100%", md: "100%", lg: "20%", xl: "20%",'2xl': '20%'}}
-            position={{ base: "none", sm: "none", md: "none", lg: "sticky", xl: "sticky",'2xl': 'sticky'}}
-            top={'60px'} 
-            zIndex={"999"}
+            position={{ base: "sticky", sm: "sticky", md: "sticky", lg: "sticky", xl: "sticky",'2xl': 'sticky'}}
+            // mt={{ base: "100px", sm: "absolute", md: "absolute", lg: "sticky", xl: "sticky",'2xl': 'sticky'}}
+            top={{ base: "none", sm: "none", md: "none", lg: "60px", xl: "60px",'2xl': '60px'}}
+            // top={'-60px'} 
+            zIndex={"99"}
             maxHeight={heightOf} 
             display={"flex"}
             flexDirection={{ base: "column", sm: "column", md: "row", lg: "column", xl: "column",'2xl': 'column'}} 
@@ -49,12 +57,15 @@ console.log(window.window.innerHeight)
             alignItems={"center"} 
             gap={"20px"} 
             p={"20px"}
-            bg="lightgray"
-            color={"black"}
+            bg="rgb(0,30,43)"
+            color={"white"}
         >
             <Box 
             >
-                <Checkbox defaultChecked >Filter By Today Date</Checkbox>
+                 <Alert bg={"none"} status='info' fontSize={"14px"} textAlign={"justify"}>
+                    <AlertIcon />
+                    If you want to filter from specific date please select the Start date & End date to get filtered Data!
+                </Alert>
             </Box>
 
             <Box 
@@ -64,14 +75,14 @@ console.log(window.window.innerHeight)
                 // border={"1px solid black"} 
             >
                 <Text   width={"40%"}  >Start Date</Text>
-                <Input onChange={(e)=> { setStartDate(e.target.value)}}  width={"60%"}  type="date"/>
+                <Input _hover={{cursor:'pointer'}} onChange={(e)=> { setStartDate(e.target.value)}}  width={"60%"}  type="date"/>
             </Box>
 
             <Box 
                 display={"flex"} 
                 justifyContent="center" 
                 alignItems={"center"} 
-                border={"1px solid black"} 
+                // border={"1px solid black"} 
                 >
                 <Text width={"40%"}  >End Date</Text>
                 <Input onChange={(e)=> { setEndDate(e.target.value)}} width={"60%"}  type="date"/>
@@ -84,7 +95,18 @@ console.log(window.window.innerHeight)
                 alignItems={"center"} 
                 // border={"1px solid black"} 
             >
-                <Button color={"black"} onClick={filter} px={"80px"} >Search</Button>
+                <Button 
+                    bg={"rgb(23,194,46)"}
+                    border={"1px solid rgb(23,194,46)"}
+                    _hover={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+                    _focus={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
+                    color="white"
+                    shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" 
+                    onClick={filter} 
+                    px={"80px"} 
+                >
+                    Search
+                </Button>
             </Box>
         </Box>
  
@@ -106,6 +128,7 @@ console.log(window.window.innerHeight)
                         bg={"rgb(0,30,43)"} 
                         color={"white"}
                         fontWeight="500"
+                        className='scrollOf'
                     >
                         <Box display={"flex"} flexDirection={"column"} gap={"20px"} >
                             <Box> {`Heading : ${e.Heading}`}</Box>
@@ -114,9 +137,9 @@ console.log(window.window.innerHeight)
                             <Box> {`Date : ${e.DateOf}`}</Box>
                         </Box>
                         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
-                        {/* <EditModal id={e._id} headProp={e.Heading} todoProp={e.Todo} getTodo={getAllTodo} />
+                        <EditModal id={e._id} headProp={e.Heading} todoProp={e.Todo} getTodo={getAllTodo} />
                         
-                        <DeleteModal id={e._id} getTodo={getAllTodo} /> */}
+                        <DeleteModal id={e._id} getTodo={getAllTodo} />
                         </Box>
                     </Box>
     })}
@@ -128,7 +151,7 @@ console.log(window.window.innerHeight)
         alignItems={'center'} 
         minHeight={"600px"} 
     > 
-        <CircularProgress isIndeterminate color='rgb(253,216,53)' /> 
+        <CircularProgress isIndeterminate color='rgb(0,30,43)' /> 
         </Box> 
     }
     </Box>
