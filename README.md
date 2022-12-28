@@ -3,7 +3,7 @@ Todo List App is a kind of app that generally used to maintain our day-to-day ta
 
 **Introduction**
 ---
-This is Solo Project created with the help of Full Stack of MERN.
+This is Solo Project created with the help of Full Stack of MERN. In this App User can signup / Login , able to see his/her todos , Edit there Todo ,  Delete there Todo, Filter Todos according to specific dates , Webiste is fully responsive in all the screens , All routes except login / signup are protected & user have to login to use application features .
 Looking forward to add more Features in this application.
 
 website link :- https://todo-frontend-tau.vercel.app/
@@ -21,35 +21,40 @@ website link :- https://todo-frontend-tau.vercel.app/
 | ----------------- | ------------------------------------------------------------------ |
 | 1 | User can signup and Login |
 | 2 | User can only able to see his/her todos |
-| 3 | User can edit there Todo|
-| 4 | User can delete there Todo |
-| 5 | Webiste is fully responsive in all the screens |
-| 6 | All routes except login / signup are protected & user have to login to use application features | 
-| 7 | Authentication & Authorization middlewares are also added in the backend | 
+| 3 | User can Edit there Todo|
+| 4 | User can Delete there Todo |
+| 5 | User can Filter Todos according to specific dates |
+| 6 | Webiste is fully responsive in all the screens |
+| 7 | All routes except login / signup are protected & user have to login to use application features | 
+| 8 | Authentication & Authorization middlewares are also added in the backend | 
 
   ## Glimpse and screenshots of website:
   ---
   
   **1) Home Page**
   ---
-<img src="https://i.imgur.com/08B0gyd.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/pFHMNQY.png" alt="Logo" marginTop='10px' width="1000" >
 
-  **2) User Login Signup Page**
+  **2) User Login / Signup Page**
    ---
-<img src="https://i.imgur.com/xRIad28.jpg" alt="Logo" marginTop='10px' width="1000" >
-<img src="https://i.imgur.com/4cpo4oI.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/pPxejqP.png" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/GNmGQlF.png" alt="Logo" marginTop='10px' width="1000" >
 
   **3) Todo Page**
   ---
-<img src="https://i.imgur.com/abtiN2s.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/kmOa5el.png" alt="Logo" marginTop='10px' width="1000" >
 
-  **4) Edit Modal**
+ **4) Filter Page**
   ---
-<img src="https://i.imgur.com/zUT1RNk.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/DeEjsBx.png" alt="Logo" marginTop='10px' width="1000" >
 
-  **5) Delete Modal**
+  **5) Edit Modal**
   ---
-<img src="https://i.imgur.com/ZOY1ZfM.jpg" alt="Logo" marginTop='10px' width="1000" >
+<img src="https://i.imgur.com/dHZ0rYw.png" alt="Logo" marginTop='10px' width="1000" >
+
+  **6) Delete Modal**
+  ---
+<img src="https://i.imgur.com/aRPdyvn.png" alt="Logo" marginTop='10px' width="1000" >
 
  
  
