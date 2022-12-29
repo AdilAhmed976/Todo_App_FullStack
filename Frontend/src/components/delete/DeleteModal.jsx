@@ -89,10 +89,10 @@ const addtodo = () => {
               isOpen={isOpen}
               onClose={onClose}
             >
-              <ModalOverlay />
+              <ModalOverlay color ={"white"} />
               <ModalContent bg={"rgb(0,30,43)"} >
                 <ModalHeader color={"white"} >Delete TODO?</ModalHeader>
-                <ModalCloseButton />     
+                <ModalCloseButton color={"white"} />     
                 <ModalFooter>
                   <Button 
                    bg={"red"}

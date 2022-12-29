@@ -24,7 +24,7 @@ export const Completed = () => {
     const isAuth = useSelector((store) => store.AuthReducer.isAuth);
     const  noOfButtons = new Array(totalPages).fill(0);
     const dispatch = useDispatch();
-
+    const heightOf= window.window.innerHeight-120
 
     const navigate = useNavigate();
     
@@ -77,6 +77,7 @@ useEffect(() => {
     <Box bg={"rgb(0,104,74)"} >
 
         { data.length>0 ? <Box  
+        minHeight={heightOf}
             display={"grid"}  
             gap={"40px"} padding={'20px'}  
             gridTemplateColumns={{ base: "repeat(1,1fr)", sm: "repeat(1,1fr)", md: "repeat(2,1fr)", lg: "repeat(2,1fr)", xl: "repeat(3,1fr)",'2xl': 'repeat(3,1fr)'}}
@@ -103,7 +104,7 @@ useEffect(() => {
                             </Box>
                         </Box>
             })}
-        </Box> : <Box display="flex" justifyContent={"center"} alignItems={'center'} minHeight={"200px"} >  <CircularProgress isIndeterminate color='rgb(0,30,43)' /> </Box> }
+        </Box> : <Box minHeight={heightOf} display="flex" justifyContent={"center"} alignItems={'center'} >  <CircularProgress isIndeterminate color='rgb(0,30,43)' /> </Box> }
 
         <Box>
             {/* <Box> { noOfButtons?.map((e,i) => {

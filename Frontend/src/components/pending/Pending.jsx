@@ -24,7 +24,7 @@ export const Pending = () => {
     const isAuth = useSelector((store) => store.AuthReducer.isAuth);
     const  noOfButtons = new Array(totalPages).fill(0);
     const dispatch = useDispatch();
-
+    const heightOf= window.window.innerHeight-120
 
     const navigate = useNavigate();
     
@@ -56,7 +56,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <Box bg={"rgb(0,104,74)"}  >
+    <Box bg={"rgb(0,104,74)"} minHeight={heightOf}   >
 
         { data.length>0 ? <Box  
             display={"grid"}  
@@ -86,7 +86,7 @@ useEffect(() => {
                             </Box>
                         </Box>
             })}
-        </Box> : <Box display="flex" justifyContent={"center"} alignItems={'center'} minHeight={"200px"} >  <CircularProgress isIndeterminate color='rgb(0,30,43)' /> </Box> }
+        </Box> : <Box display="flex" justifyContent={"center"} alignItems={'center'} minHeight={heightOf}  >  <CircularProgress isIndeterminate color='rgb(0,30,43)' /> </Box> }
 
         <Box>
             {/* <Box> { noOfButtons?.map((e,i) => {

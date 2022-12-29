@@ -32,6 +32,7 @@ export const AllTodo = () => {
     
     const end = page * perPage
     const start = end - perPage
+    const heightOf= window.window.innerHeight-120
     
     
     const isAuth = useSelector((store) => store.AuthReducer.isAuth);
@@ -39,6 +40,7 @@ export const AllTodo = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [values,setValues] = useState( noOfButtons.map((el,i) => i+1))
+    const [isEmpty,setIsEmpty] = useState(false)
 
 const getAllTodo = (page) => {
     setData([])
@@ -51,7 +53,24 @@ const getAllTodo = (page) => {
 
     axios.get(url , config)
     .then((response) => {
-    setData(response.data)
+        if(response.data.length==0) {
+            setIsEmpty(true)
+            setData([
+                {
+                    DateOf: "No Date Beacause of data",
+                    Heading: "No Data Available Please Add tasks",
+                    Status: false,
+                    Todo: "No Data",
+                    userId: "",
+                    __v: 0,
+                    _id: "1"
+                }
+            ])
+        }
+        else {
+            setIsEmpty(false)
+            setData(response.data)
+        }
         
     })  
     .catch(function (error) {
@@ -74,7 +93,7 @@ useEffect(() => {
 
   return ( <Box bg={"rgb(0,104,74)"} >
 
-    <Box>
+    <Box minHeight={heightOf}  >
         {data.length>0 ? 
         <Box  
             display={"grid"}  
@@ -100,7 +119,7 @@ useEffect(() => {
                             <Box> {`Status : ${e.Status?"Completed" : "Not Completed"}`}</Box>
                             <Box> {`Date : ${e.DateOf}`}</Box>
                         </Box>
-                        <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
+                        <Box display={ isEmpty ? "none" :"flex"} justifyContent={"space-between"} alignItems={"center"} py="10px" >
                         <EditModal id={e._id} headProp={e.Heading} todoProp={e.Todo} getTodo={getAllTodo} />
                         
                         <DeleteModal id={e._id} getTodo={getAllTodo} />
@@ -121,7 +140,7 @@ useEffect(() => {
     </Box>
 
     <Box 
-        display={"flex"}
+        display={ isEmpty ? "none" :"flex"}
         justifyContent={"center"}
         alignItems={"center"}
         py={"20px"} 

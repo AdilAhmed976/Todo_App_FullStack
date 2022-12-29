@@ -188,7 +188,7 @@ const addtodo = () => {
         </FormControl  >
       </Box>
 
-<Box textAlign={"center"} padding={"20px"} fontFamily="Roboto Mono" fontSize={"26px"} fontWeight={"600"} >
+<Box textAlign={"center"} padding={"20px"} color="white" fontFamily="Roboto Mono" fontSize={"26px"} fontWeight={"600"} >
   <Text>
   Today's Tasks
   </Text>
@@ -208,7 +208,7 @@ const addtodo = () => {
                 <Carousel ref={carouselRef}
                   responsive={responsive} 
                   showDots={true} 
-                  renderDotsOutside={true}
+                  // renderDotsOutside={true}
                   swipeable={true} 
                   arrows={true}
                   centerMode={false}
@@ -223,7 +223,7 @@ const addtodo = () => {
                     borderRadius={"20px"} bg={"rgb(0,30,43)"} 
                     color={"white"}
                     fontWeight="500"
-                    mr={"10px"}
+                    m={"10px"}
                     className='scrollOf'
                   >
                       <Box display={"flex"} flexDirection={"column"} gap={"20px"} >

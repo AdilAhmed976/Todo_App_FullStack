@@ -15,7 +15,7 @@ import {
   Button
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as local from "../../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { loginCheck } from "../../Redux/AuthReducer/action";
@@ -32,7 +32,8 @@ export default function Login() {
   const isLoading = useSelector((store) => store.AuthReducer.isLoading);
 
   const navigate = useNavigate();
-
+  const parame = useParams()
+console.log("parame",parame)
   const handleSignUp = () => {
     const payload = { email, password };
 
