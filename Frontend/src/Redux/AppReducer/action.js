@@ -80,7 +80,7 @@ export const GettingTodaysTodosData = (payload) => (dispatch)=> {
     let year = date.getFullYear();
     // This arrangement can be altered based on how we want the date's format to appear.
     let currentDate = `${day}-${month}-${year}`;
-console.log("DATE",currentDate)
+
 	dispatch(getTodayDataRequest())
 	let url = `https://todobackend-asac.onrender.com/todo/today?day=${currentDate}`
 	const config = {
@@ -88,13 +88,13 @@ console.log("DATE",currentDate)
 			"Authorization": `Bearer ${payload}`
 		}
 	};
-	axios.get(url , config)
+	return axios.get(url , config)
 	.then((response) => {
-console.log(response.data)
-		dispatch(getTodayDataSuccess(response.data))
+
+	return	dispatch(getTodayDataSuccess(response.data))
 	})  
 	.catch(function (error) {
-		dispatch(getTodayDataFailure())
+	return	dispatch(getTodayDataFailure())
 	})
 }
 

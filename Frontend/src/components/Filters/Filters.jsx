@@ -75,8 +75,9 @@ const getAllTodo = () => {
         >
             <Box 
             >
-                 <Alert bg={"none"} status='info' fontSize={"12px"} textAlign={"justify"}>
-                    <AlertIcon />
+                 <Alert bg={"none"} status='info' fontSize={"12px"} textAlign={"justify"} border={"1px solid white"}
+                borderRadius={"20px"}  >
+                    <AlertIcon /> 
                     If you want to filter from specific date please select the Start date & End date to get filtered Data!
                 </Alert>
             </Box>
@@ -134,7 +135,7 @@ const getAllTodo = () => {
         { isLoading==false ? 
         <Box  
             display={"grid"}  
-            gap={"40px"} padding={'20px'}  
+            gap={"20px"} padding={'20px'}  
             gridTemplateColumns={{ base: "repeat(1,1fr)", sm: "repeat(1,1fr)", md: "repeat(2,1fr)", lg: "repeat(2,1fr)", xl: "repeat(3,1fr)",'2xl': 'repeat(3,1fr)'}}
         >
         {filteredData?.map((e,i) => {

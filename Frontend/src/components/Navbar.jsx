@@ -27,6 +27,8 @@ import { getLocalData, SaveTheToken } from '../utils/localStorage';
 import { FaRegIdBadge } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutTheUser } from '../Redux/AuthReducer/action';
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { BsArrowBarRight } from "react-icons/bs";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -77,7 +79,7 @@ export default function Navbar() {
           <IconButton
             onClick={onToggle}
             icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon  w={5} h={5} />
             }
             variant={'ghost'}
             aria-label={'Toggle Navigation'}
@@ -113,7 +115,7 @@ export default function Navbar() {
             dispatch(logOutTheUser())
             navigate("/login")
           }} 
-          rightIcon={<FaRegIdBadge/>} 
+          rightIcon={<RiLogoutCircleLine color="white" />} 
           fontSize={{ base: '12px', md: '16px' }} 
           colorScheme='white' 
           variant='filled'
@@ -253,7 +255,9 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 const MobileNav = () => {
   return (
     <Stack
-      bg={useColorModeValue('white', 'gray.800')}
+      bg={"rgb(0,30,43)"}
+      color={"white"}
+      fontFamily="Roboto Mono"
       p={4}
       display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
@@ -274,14 +278,18 @@ const MobileNavItem = ({ label, children, href }) => {
         to={href ?? '#'}
         justify={'space-between'}
         align={'center'}
+        color={"rgb(23,194,46)"}
         _hover={{
           textDecoration: 'black',
         }}>
-        <Text
-          fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}>
-          {label}
-        </Text>
+          <Box width={"100%"} color='rgb(23,194,46)' display={"flex"} alignItems="center" gap="10px" _hover={{borderBottom:"1px solid rgb(23,194,46)"}} >
+            <BsArrowBarRight color='rgb(23,194,46)' />
+            <Text
+              fontWeight={600}
+              color={"white"}>
+              {label}
+            </Text>
+          </Box>
         {children && (
           <Icon
             as={ChevronDownIcon}

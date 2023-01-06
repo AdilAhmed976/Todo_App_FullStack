@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router-dom'
 import { getLocalData } from '../../utils/localStorage'
 import axios from 'axios'
 import { DeleteIcon } from '@chakra-ui/icons'
+import { RiChatDeleteLine } from "react-icons/ri";
 export const DeleteModal = ({id,getTodo}) => {
   //  export  function InitialFocus(e) {
         const { isOpen, onOpen, onClose } = useDisclosure()
@@ -76,7 +77,7 @@ const addtodo = () => {
               border={"2px solid white"}
               _hover={{bg:"lightred",color:"red",borderColor:"red"}} 
               _focus={{bg:"lightred",color:"red",borderColor:"red"}} 
-              leftIcon={<DeleteIcon/>} 
+              leftIcon={<RiChatDeleteLine/>} 
               onClick={onOpen}
               shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
               color={"white"}

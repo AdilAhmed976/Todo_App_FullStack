@@ -21,6 +21,8 @@ import { useNavigate } from 'react-router-dom'
 import { getLocalData } from '../../utils/localStorage'
 import axios from 'axios'
 import { FaRegEdit } from 'react-icons/fa'
+import { BiMessageEdit } from "react-icons/bi";
+
 export const EditModal = ({id,getTodo,headProp,todoProp}) => {
   //  export  function InitialFocus(e) {
         const { isOpen, onOpen, onClose } = useDisclosure()
@@ -95,7 +97,7 @@ const addtodo = () => {
               _focus={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
               color="white"
               shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" 
-              leftIcon={<FaRegEdit/>} 
+              leftIcon={<BiMessageEdit/>} 
               onClick={onOpen}
             >
               Edit

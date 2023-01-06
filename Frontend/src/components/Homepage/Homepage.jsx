@@ -46,7 +46,8 @@ export const Homepage = () => {
   const data = useSelector((store) => store.AppReducer.todoData);
   const todayData = useSelector((store) => store.AppReducer.todayData);
   const isLoading = useSelector((store) => store.AppReducer.isLoading);
-
+  const [noTask,setNoTask] = useState(false)
+console.log("firsttaks",noTask)
   // // checking the screen size so that well set the count of slide according to it
   // const [countOfSlide,setCountOfSlide] = useState(
   //   window.window.innerWidth<=responsive.desktop.breakpoint.max&& window.window.innerWidth>=responsive.desktop.breakpoint.min ? 3  :
@@ -57,19 +58,31 @@ export const Homepage = () => {
   const [load,setLoad] = useState(false)
   const navigate = useNavigate();
   const carouselRef = useRef(null)
+  let [count,setcount]=useState(0)
   
 const getTodo = () => {
+  setcount(count+1)
   dispatch(GettingTodaysTodosData(tokenof))
-
 }
-      
+    
 useEffect(() => {
   
   if (data.length===0) {
     dispatch(GettingTheTodosData(tokenof)) 
   }
+  
   dispatch(GettingTodaysTodosData(tokenof))
-}, [])
+  .then((res) => {
+    
+    if (res.payload.length===0) {
+      setNoTask(true)
+    }
+    else {
+      setNoTask(false)
+    }
+  })
+  
+}, [count])
 
 const addtodo = () => {
 
@@ -137,7 +150,9 @@ const addtodo = () => {
         alignItems={"center"} 
         borderRadius={"50px"}  
         boxShadow = {"rgba(0, 0, 0, 0.35) 0px 5px 15px"} 
-        height={'60vh'} 
+        // height={'60vh'} 
+        py="40px"
+        // py={{ base: "10px", sm: "20px", md: "30px", lg: "40px", xl: "40px",'2xl': '40px'}}
         w={{ base: "90%", sm: "80%", md: "60%", lg: "50%", xl: "50%",'2xl': '40%'}}
         margin={"auto"}
         // py="40px"
@@ -184,7 +199,7 @@ const addtodo = () => {
           _focus={{bg:"rgb(23,194,46)",borderColor:"2px solid white"}} 
           color="white"
           shadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" 
-          onClick={() =>{addtodo()}} > Submit </Button>
+          onClick={() =>{addtodo()}} > Add Today's Task </Button>
         </FormControl  >
       </Box>
 
@@ -202,8 +217,35 @@ const addtodo = () => {
                       minHeight={"200px"} 
                     > 
                       <CircularProgress isIndeterminate color='rgb(0,30,43)' /> 
-                    </Box> 
-                  :
+                    </Box> :
+                    noTask ? 
+                    <Box 
+                      display={"flex"} 
+                      justifyContent="center" 
+                      alignItems={"center"}
+                      alignSelf="center"
+                    >
+                      <Box 
+                      width={{ base: "100%", sm: "100%", md: "100%", lg: "50%", xl: "50%",'2xl': '50%'}}
+                        // minWidth={"50%"}
+                        minHeight={"100px"}
+                        border={'0.5px solid lightgray'} 
+                        px={"40px"} py={"40px"} 
+                        fontFamily="Roboto Mono" 
+                        boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px;"} 
+                        borderRadius={"20px"} 
+                        bg={"rgb(0,30,43)"} 
+                        color={"white"}
+                        fontWeight="500"
+                        m={"10px"} 
+                        textAlign="center"
+                      > 
+                      <Text>No Task's Added for today, Start Adding your today's Task now!</Text>
+                       </Box>
+                      
+                    </Box>
+                    :
+                  
                   <Box>
                 <Carousel ref={carouselRef}
                   responsive={responsive} 
